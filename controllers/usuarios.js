@@ -45,7 +45,7 @@ const  usuariosPost = async (req = request,res = response) => {
 }
 const usuariosPut = async (req,res = response) => {
     const {id} = req.params;
-
+    
 
     const {_id, email, google, ...resto} = req.body;
 
@@ -63,11 +63,12 @@ const usuariosPut = async (req,res = response) => {
 
 const usuariosDelete = async (req,res = response) => {
     const {id} = req.params;
-
+    const usuarioAutenticado = req.usuario;
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
 
     res.json({
-        msg: "Usuario eliminado"
+        usuario,
+        usuarioAutenticado
     });
 }
 

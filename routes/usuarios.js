@@ -1,7 +1,9 @@
 const { Router } = require('express'); // me permite llamar esa función
-
 const { check } = require('express-validator');
-const { validarCampos} = require('../middleware/validar-campos');
+
+const { validarJWT, validarCampos, esAdminRol , tieneRole} = require('../middleware');
+
+
 const {
     usuariosGet,
     usuariosPost,
@@ -33,6 +35,9 @@ router.put('/:id', [
 ], usuariosPut )
 
 router.delete('/:id', [
+    validarJWT,
+    //esAdminRol,
+    tieneRole('ADMIN_ROLE','VENTAS_ROLE'),
     check('id','No es un ID valido').isMongoId(),
     validarCampos
 ] , usuariosDelete )
