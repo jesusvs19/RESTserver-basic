@@ -38,4 +38,4 @@ UsuariosSchema.methods.toJSON = function(){
     resto.uid = _id;
     return resto
 }
-module.exports = model('Usuario', UsuariosSchema)
+module.exports = model('Usuario', UsuariosSchema,'usuarios')
