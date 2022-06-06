@@ -52,6 +52,15 @@ const categoriaExiste = async (categoria) => {
     }
 
 }
+
+const coleccionesPermitidas = (c, colecciones=[]) => {
+    const include = colecciones.includes(c);
+
+    if( !include ){
+        throw new Error(`La coleccion ${c} no es una coleccion permitida`);
+    }
+    return true;
+}
 module.exports = {
     rolExiste,
     emailExiste,
@@ -59,4 +68,5 @@ module.exports = {
     existeCategoria,
     existeProducto,
     categoriaExiste,
+    coleccionesPermitidas
 }
